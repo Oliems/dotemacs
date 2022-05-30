@@ -8,6 +8,9 @@
 (scroll-bar-mode -1)
 (horizontal-scroll-bar-mode -1)
 
+;; Disable default startup screen
+(setq inhibit-startup-message t)
+
 ;; Enable ido-mode
 (ido-mode t)
 (setq ido-everywhere t)
