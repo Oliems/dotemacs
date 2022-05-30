@@ -78,10 +78,6 @@
 (global-set-key (kbd "s-C-k") 'shrink-window)
 (global-set-key (kbd "s-C-j") 'enlarge-window)
 
-;; Whichkey
-;; The whichkey package prints possible completions for keychords
-(which-key-mode 1)
-
 ;; Dired
 ;; use dired-find-alternate-file which is bound to a in dired-mode to opend folders without creating a new buffer
 (put 'dired-find-alternate-file 'disabled nil)
@@ -103,3 +99,11 @@
   (setq display-time-mail-directory nil)
   (setq display-time-default-load-average nil)
   :hook (after-init . display-time-mode))
+
+;; Whichkey
+;; The whichkey package prints possible completions for keychords
+(use-package which-key
+  :ensure t
+  :diminish which-key-mode
+  :init
+  (which-key-mode))
