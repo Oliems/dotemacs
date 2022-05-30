@@ -35,6 +35,9 @@
 ;; when you previously visited the same file.
 (save-place-mode 1)
 
+;; TODO bind hyper key
+;; http://xahlee.info/emacs/emacs/emacs_hyper_super_keys.html
+
 ;; Disable s-* bindings
 (global-unset-key (kbd "s-z"))
 (global-unset-key (kbd "s-x"))
@@ -56,12 +59,11 @@
 (global-unset-key (kbd "<M-down>"))
 
 ;; Remap Control to Command and Meta to Option on macOS keyboard
-(custom-set-variables
- '(ns-alternate-modifier 'meta)             ;; map Alt to be Meta
- '(ns-right-alternate-modifier 'meta)
- '(ns-command-modifier 'control)            ;; map Command to be Control
- '(ns-right-command-modifier 'control)
- '(ns-control-modifier 'super))             ;; map Control to be Super
+ '(ns-alternate-modifier 'meta)            ;; map Alt/Option to be Meta
+ '(ns-command-modifier 'control)           ;; map Command to be Control
+ '(ns-right-alternate-modifier 'meta)      ;; map Right Alt/Option to be Meta
+ '(ns-right-command-modifier 'control)     ;; map Right Control to be Control
+ '(ns-control-modifier 'super)             ;; map Control to be Super
 
 ;; Switch bindings between default isearch and isearch with regexp
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -91,3 +93,13 @@
 ;; Theme
 ;; (load-theme 'modus-vivendi t)
 (load-theme 'modus-operandi t)
+
+;; Display time and date in the modeline
+(use-package time
+  :commands world-clock
+  :config
+  (setq display-time-format "%H:%M  %d-%m-%Y")
+  (setq display-time-interval 60)
+  (setq display-time-mail-directory nil)
+  (setq display-time-default-load-average nil)
+  :hook (after-init . display-time-mode))
