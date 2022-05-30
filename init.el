@@ -1,3 +1,7 @@
+;; Add MELPA repository
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
 ;; Disable GUI elements
 (menu-bar-mode -1)
 (tool-bar-mode -1)
