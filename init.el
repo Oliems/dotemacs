@@ -77,6 +77,7 @@
 (global-set-key (kbd "s-C-j") 'enlarge-window)
 
 ;; Whichkey
+;; The whichkey package prints possible completions for keychords
 (which-key-mode 1)
 
 ;; Dired
