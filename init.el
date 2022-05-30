@@ -35,9 +35,6 @@
 ;; when you previously visited the same file.
 (save-place-mode 1)
 
-;; TODO bind hyper key
-;; http://xahlee.info/emacs/emacs/emacs_hyper_super_keys.html
-
 ;; Disable s-* bindings
 (global-unset-key (kbd "s-z"))
 (global-unset-key (kbd "s-x"))
@@ -59,11 +56,11 @@
 (global-unset-key (kbd "<M-down>"))
 
 ;; Remap Control to Command and Meta to Option on macOS keyboard
- '(ns-alternate-modifier 'meta)            ;; map Alt/Option to be Meta
- '(ns-command-modifier 'control)           ;; map Command to be Control
- '(ns-right-alternate-modifier 'meta)      ;; map Right Alt/Option to be Meta
- '(ns-right-command-modifier 'control)     ;; map Right Control to be Control
- '(ns-control-modifier 'super)             ;; map Control to be Super
+'(ns-alternate-modifier 'meta)            ;; map Alt/Option to be Meta
+'(ns-command-modifier 'control)           ;; map Command to be Control
+'(ns-right-alternate-modifier 'meta)      ;; map Right Alt/Option to be Meta
+'(ns-right-command-modifier 'control)     ;; map Right Control to be Control
+'(ns-control-modifier 'super)             ;; map Control to be Super
 
 ;; Switch bindings between default isearch and isearch with regexp
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -77,10 +74,6 @@
 (global-set-key (kbd "s-C-h") 'enlarge-window-horizontally)
 (global-set-key (kbd "s-C-k") 'shrink-window)
 (global-set-key (kbd "s-C-j") 'enlarge-window)
-
-;; Dired
-;; use dired-find-alternate-file which is bound to a in dired-mode to opend folders without creating a new buffer
-(put 'dired-find-alternate-file 'disabled nil)
 
 ;; Font
 (add-to-list 'default-frame-alist
@@ -107,3 +100,13 @@
   :diminish which-key-mode
   :init
   (which-key-mode))
+
+;; Dired
+;; use dired-find-alternate-file which is bound to a in dired-mode to opend folders without creating a new buffer
+(put 'dired-find-alternate-file 'disabled nil)
+
+;; TODO Move custom-set-variables out of init.el
+;; TODO Install packages automatically
+;; TODO bind hyper key
+;; http://xahlee.info/emacs/emacs/emacs_hyper_super_keys.html
+;; TODO Configure dashboard
