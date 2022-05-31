@@ -41,6 +41,12 @@
 ;; Enable minibuffer history
 (savehist-mode 1)
 
+;; File backup settings
+(setq load-prefer-newer t)
+(setq backup-by-copying t)
+(setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
+
+
 ;; Disable s-* bindings
 (global-unset-key (kbd "s-z"))
 (global-unset-key (kbd "s-x"))
@@ -120,18 +126,15 @@
         mouse-yank-at-point t
         require-final-newline t
         visible-bell t
-        load-prefer-newer t
-        backup-by-copying t
+
         ediff-window-setup-function 'ediff-setup-windows-plain
         )
 
-  (unless backup-directory-alist
-    (setq backup-directory-alist `(("." . ,(concat user-emacs-directory
-                                                   "backups")))))
 
-;; TODO Move custom-set-variables out of init.el
+
 ;; TODO Install packages automatically
 ;; TODO bind hyper key
 ;; http://xahlee.info/emacs/emacs/emacs_hyper_super_keys.html
 ;; TODO Configure dashboard
 ;; TODO Move config to org file
+;; Install helpful package
