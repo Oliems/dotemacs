@@ -11,6 +11,9 @@
 ;; Disable default startup screen
 (setq inhibit-startup-message t)
 
+;; Move custom settings to custom.el
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+
 ;; Enable ido-mode
 (ido-mode t)
 (setq ido-everywhere t)
@@ -83,6 +86,9 @@
 ;; (load-theme 'modus-vivendi t)
 (load-theme 'modus-operandi t)
 
+(use-package diminish
+  :ensure t)
+
 ;; Display time and date in the modeline
 (use-package time
   :commands world-clock
@@ -103,10 +109,26 @@
 
 ;; Dired
 ;; use dired-find-alternate-file which is bound to a in dired-mode to opend folders without creating a new buffer
-(put 'dired-find-alternate-file 'disabled nil)
+
+  (setq-default indent-tabs-mode nil)
+  (savehist-mode 1)
+  (setq save-interprogram-paste-before-kill t
+        apropos-do-all t
+        mouse-yank-at-point t
+        require-final-newline t
+        visible-bell t
+        load-prefer-newer t
+        backup-by-copying t
+        ediff-window-setup-function 'ediff-setup-windows-plain
+        )
+
+  (unless backup-directory-alist
+    (setq backup-directory-alist `(("." . ,(concat user-emacs-directory
+                                                   "backups")))))
 
 ;; TODO Move custom-set-variables out of init.el
 ;; TODO Install packages automatically
 ;; TODO bind hyper key
 ;; http://xahlee.info/emacs/emacs/emacs_hyper_super_keys.html
 ;; TODO Configure dashboard
+;; TODO Move config to org file
