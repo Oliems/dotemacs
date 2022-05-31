@@ -138,7 +138,28 @@
 ;; This package is an alternative to the built-in Emacs help that provides much more
 ;; contextual information
 (use-package helpful
-  :ensure t)
+  :ensure t
+  :bind
+  ("C-h v" . 'helpful-variable)
+  ("C-h f" . 'helpful-callable)
+  ("C-h k" . 'helpful-key)
+
+  ;; Lookup the current symbol at point. C-c C-d is a common keybinding
+  ;; for this in lisp modes.
+  ("C-c C-d" . 'helpful-at-point)
+
+  ;; Look up *F*unctions (excludes macros).
+  ;;
+  ;; By default, C-h F is bound to `Info-goto-emacs-command-node'. Helpful
+  ;; already links to the manual, if a function is referenced there.
+  ("C-h F" . 'helpful-function)
+
+  ;; Look up *C*ommands.
+  ;;
+  ;; By default, C-h C is bound to describe `describe-coding-system'. I
+  ;; don't find this very useful, but it's frequently useful to only
+  ;; look at interactive functions.
+  ("C-h C" . 'helpful-command))
 
 ;; Swiper
 ;; Swiper is an alternative to isearch that uses Ivy to show an overview of all matches.
@@ -158,5 +179,3 @@
   :ensure t)
 
 ;; TODO Configure dashboard
-;; TODO Move config to org file
-;; TODO Add bindings for helpful
