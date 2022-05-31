@@ -122,18 +122,15 @@
   :init
   (which-key-mode))
 
-;; Dired
-;; use dired-find-alternate-file which is bound to a in dired-mode to opend folders without creating a new buffer
+;; Helpful
+(use-package helpful
+  :ensure t)
 
-  (setq-default indent-tabs-mode nil)
+;; Swiper
+(use-package swiper
+  :ensure t)
 
- 
-
-        require-final-newline t
-
-;; TODO Install packages automatically
 ;; TODO bind hyper key
 ;; http://xahlee.info/emacs/emacs/emacs_hyper_super_keys.html
 ;; TODO Configure dashboard
 ;; TODO Move config to org file
-;; Install helpful package
