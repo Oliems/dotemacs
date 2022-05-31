@@ -176,6 +176,52 @@
 ;; Dashboard
 ;; An extensible emacs startup screen showing you what’s most important.
 (use-package dashboard
-  :ensure t)
+  :ensure t
+  :defer nil
+  :preface
+  (defun update-config ()
+    "Update Witchmacs to the latest version."
+    (interactive)
+    (let ((dir (expand-file-name user-emacs-directory)))
+      (if (file-exists-p dir)
+          (progn
+            (message "Witchmacs is updating!")
+            (cd dir)
+            (shell-command "git pull")
+            (message "Update finished. Switch to the messages buffer to see changes and then restart Emacs"))
+        (message "\"%s\" doesn't exist." dir))))
 
-;; TODO Configure dashboard
+  (defun create-scratch-buffer ()
+    "Create a scratch buffer"
+    (interactive)
+    (switch-to-buffer (get-buffer-create "*scratch*"))
+    (lisp-interaction-mode))
+  :config
+  (dashboard-setup-startup-hook)
+  (setq dashboard-items '((recents . 5)))
+  (setq dashboard-banner-logo-title "Emacs: the extensible customizable self-documenting display")
+  (setq dashboard-startup-banner "~/.emacs.d/lambda.png")
+  (setq dashboard-center-content t)
+  (setq dashboard-show-shortcuts nil)
+  (setq dashboard-set-init-info t)
+  (setq dashboard-init-info (format "%d packages loaded in %s"
+                                    (length package-activated-list) (emacs-init-time)))
+  (setq dashboard-set-footer nil)
+  (setq dashboard-set-navigator t)
+  (setq dashboard-navigator-buttons
+        `(
+          ((,nil
+	     "Open scratch buffer"
+	     "Switch to the scratch buffer"
+	     (lambda (&rest _) (create-scratch-buffer))
+	     'default)
+	    (nil
+	     "Open init.el"
+	     "Open configuration file"
+	     (lambda (&rest _) (find-file "~/.emacs.d/init.el"))
+	     'default)
+	    (nil
+	     "Update init.el"
+	     "Pull changes from Github"
+	     (lambda (&rest _) (update-config))
+	     'default)))))
