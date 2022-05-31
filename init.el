@@ -211,17 +211,17 @@
   (setq dashboard-navigator-buttons
         `(
           ((,nil
-	     "Open scratch buffer"
-	     "Switch to the scratch buffer"
-	     (lambda (&rest _) (create-scratch-buffer))
-	     'default)
-	    (nil
-	     "Open init.el"
-	     "Open configuration file"
-	     (lambda (&rest _) (find-file "~/.emacs.d/init.el"))
-	     'default)
-	    (nil
-	     "Update init.el"
-	     "Pull changes from Github"
-	     (lambda (&rest _) (update-config))
-	     'default)))))
+	    "Open scratch buffer"
+	    "Switch to the scratch buffer"
+	    (lambda (&rest _) (create-scratch-buffer))
+	    'default)
+	   (nil
+	    "Open init.el"
+	    "Open configuration file"
+	    (lambda (&rest _) (find-file "~/.emacs.d/init.el"))
+	    'default)
+	   (nil
+	    "Update init.el"
+	    "Pull changes from Github"
+	    (lambda (&rest _) (update-config))
+	    'default)))))
