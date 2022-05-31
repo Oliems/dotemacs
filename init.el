@@ -46,6 +46,8 @@
 (setq backup-by-copying t)
 (setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
 
+;; Save clipboard text into kill ring before replacing it
+(setq save-interprogram-paste-before-kill t)
 
 ;; Disable s-* bindings
 (global-unset-key (kbd "s-z"))
@@ -121,13 +123,12 @@
 
   (setq-default indent-tabs-mode nil)
 
-  (setq save-interprogram-paste-before-kill t
+ 
         apropos-do-all t
         mouse-yank-at-point t
         require-final-newline t
         visible-bell t
 
-        ediff-window-setup-function 'ediff-setup-windows-plain
         )
 
 
