@@ -142,9 +142,15 @@
 (use-package avy
   :ensure t
   :bind
-  ("M-z" . avy-goto-char))
+  ("M-z" . avy-goto-char)) ;; replace zap-to-char whith avy-goto-char
+
+;; Dashboard
+;; An extensible emacs startup screen showing you what’s most important.
+(use-package dashboard
+  :ensure t)
 
 ;; TODO bind hyper key
 ;; http://xahlee.info/emacs/emacs/emacs_hyper_super_keys.html
 ;; TODO Configure dashboard
 ;; TODO Move config to org file
+;; Add bindings for helpful
