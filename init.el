@@ -115,6 +115,11 @@
   (setq display-time-default-load-average nil)
   :hook (after-init . display-time-mode))
 
+;; Eldoc
+;; Add eldoc-mode to diminish
+(use-package eldoc
+  :diminish eldoc-mode)
+
 ;; Whichkey
 ;; This package displays available keybindings in popup
 (use-package which-key
@@ -152,8 +157,6 @@
 (use-package dashboard
   :ensure t)
 
-;; TODO bind hyper key
-;; http://xahlee.info/emacs/emacs/emacs_hyper_super_keys.html
 ;; TODO Configure dashboard
 ;; TODO Move config to org file
 ;; TODO Add bindings for helpful
