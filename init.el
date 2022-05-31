@@ -49,7 +49,6 @@
 ;; Save clipboard text into kill ring before replacing it
 (setq save-interprogram-paste-before-kill t)
 
-
 ;; Make apropos command search more extensively
 (setq apropos-do-all t)
 
@@ -77,7 +76,7 @@
 (setq ns-alternate-modifier 'meta)            ;; map Alt/Option to be Meta
 (setq ns-command-modifier 'control)           ;; map Command to be Control
 (setq ns-right-alternate-modifier 'meta)      ;; map Right Alt/Option to be Meta
-(setq ns-right-command-modifier 'control)     ;; map Right Control to be Control
+(setq ns-right-command-modifier 'hyper)       ;; map Right Control to be Hyper
 (setq ns-control-modifier 'super)             ;; map Control to be Super
 
 ;; Switch bindings between default isearch and isearch with regexp
@@ -135,14 +134,13 @@
 ;; Swiper is an alternative to isearch that uses Ivy to show an overview of all matches.
 (use-package swiper
   :ensure t
-  :bind ("C-s" . 'swiper))
+  :bind ("C-s" . 'swiper)) ;; replace default isearch with swiper
 
 ;; Avy
 ;; This package allows jumping to visible text using a char-based decision tree
 (use-package avy
   :ensure t
-  :bind
-  ("M-z" . avy-goto-char)) ;; replace zap-to-char whith avy-goto-char
+  :bind ("M-z" . avy-goto-char)) ;; replace zap-to-char whith avy-goto-char
 
 ;; Dashboard
 ;; An extensible emacs startup screen showing you what’s most important.
@@ -153,4 +151,4 @@
 ;; http://xahlee.info/emacs/emacs/emacs_hyper_super_keys.html
 ;; TODO Configure dashboard
 ;; TODO Move config to org file
-;; Add bindings for helpful
+;; TODO Add bindings for helpful
