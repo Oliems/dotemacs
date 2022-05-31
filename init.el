@@ -49,6 +49,10 @@
 ;; Save clipboard text into kill ring before replacing it
 (setq save-interprogram-paste-before-kill t)
 
+
+;; Make apropos command search more extensively
+(setq apropos-do-all t)
+
 ;; Disable s-* bindings
 (global-unset-key (kbd "s-z"))
 (global-unset-key (kbd "s-x"))
@@ -124,14 +128,8 @@
   (setq-default indent-tabs-mode nil)
 
  
-        apropos-do-all t
-        mouse-yank-at-point t
+
         require-final-newline t
-        visible-bell t
-
-        )
-
-
 
 ;; TODO Install packages automatically
 ;; TODO bind hyper key
