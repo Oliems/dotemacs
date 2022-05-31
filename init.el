@@ -38,6 +38,9 @@
 ;; when you previously visited the same file.
 (save-place-mode 1)
 
+;; Enable minibuffer history
+(savehist-mode 1)
+
 ;; Disable s-* bindings
 (global-unset-key (kbd "s-z"))
 (global-unset-key (kbd "s-x"))
@@ -111,7 +114,7 @@
 ;; use dired-find-alternate-file which is bound to a in dired-mode to opend folders without creating a new buffer
 
   (setq-default indent-tabs-mode nil)
-  (savehist-mode 1)
+
   (setq save-interprogram-paste-before-kill t
         apropos-do-all t
         mouse-yank-at-point t
