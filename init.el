@@ -112,7 +112,7 @@
   :hook (after-init . display-time-mode))
 
 ;; Whichkey
-;; Displays available keybindings in popup
+;; This package displays available keybindings in popup
 (use-package which-key
   :ensure t
   :diminish which-key-mode
@@ -120,21 +120,25 @@
   (which-key-mode))
 
 ;; Diminish
+;; This package implements hiding or abbreviation of the mode line
+;; displays (lighters) of minor-modes.
 (use-package diminish
   :ensure t)
 
 ;; Helpful
-;; An alternative to the built-in Emacs help that provides much more
+;; This package is an alternative to the built-in Emacs help that provides much more
 ;; contextual information
 (use-package helpful
   :ensure t)
 
 ;; Swiper
+;; Swiper is an alternative to isearch that uses Ivy to show an overview of all matches.
 (use-package swiper
-  :ensure t)
+  :ensure t
+  :bind ("C-s" . 'swiper))
 
 ;; Avy
-;; Allow jumping to visible text using a char-based decision tree
+;; This package allows jumping to visible text using a char-based decision tree
 (use-package avy
   :ensure t
   :bind
