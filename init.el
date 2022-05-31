@@ -173,6 +173,11 @@
   :ensure t
   :bind ("M-z" . avy-goto-char)) ;; replace zap-to-char whith avy-goto-char
 
+;; Elfeed
+;; Elfeed is an extensible web feed reader for Emacs, supporting both Atom and RSS.
+(use-package elfeed
+  :ensure t)
+
 ;; Dashboard
 ;; An extensible emacs startup screen showing you what’s most important.
 (use-package dashboard
