@@ -56,11 +56,11 @@
 (global-unset-key (kbd "<M-down>"))
 
 ;; Remap Control to Command and Meta to Option on macOS keyboard
-'(ns-alternate-modifier 'meta)            ;; map Alt/Option to be Meta
-'(ns-command-modifier 'control)           ;; map Command to be Control
-'(ns-right-alternate-modifier 'meta)      ;; map Right Alt/Option to be Meta
-'(ns-right-command-modifier 'control)     ;; map Right Control to be Control
-'(ns-control-modifier 'super)             ;; map Control to be Super
+(setq ns-alternate-modifier 'meta)            ;; map Alt/Option to be Meta
+(setq ns-command-modifier 'control)           ;; map Command to be Control
+(setq ns-right-alternate-modifier 'meta)      ;; map Right Alt/Option to be Meta
+(setq ns-right-command-modifier 'control)     ;; map Right Control to be Control
+(setq ns-control-modifier 'super)             ;; map Control to be Super
 
 ;; Switch bindings between default isearch and isearch with regexp
 (global-set-key (kbd "C-x C-b") 'ibuffer)
