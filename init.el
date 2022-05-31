@@ -101,9 +101,6 @@
 ;; (load-theme 'modus-vivendi t)
 (load-theme 'modus-operandi t)
 
-(use-package diminish
-  :ensure t)
-
 ;; Display time and date in the modeline
 (use-package time
   :commands world-clock
@@ -115,20 +112,33 @@
   :hook (after-init . display-time-mode))
 
 ;; Whichkey
-;; The whichkey package prints possible completions for keychords
+;; Displays available keybindings in popup
 (use-package which-key
   :ensure t
   :diminish which-key-mode
   :init
   (which-key-mode))
 
+;; Diminish
+(use-package diminish
+  :ensure t)
+
 ;; Helpful
+;; An alternative to the built-in Emacs help that provides much more
+;; contextual information
 (use-package helpful
   :ensure t)
 
 ;; Swiper
 (use-package swiper
   :ensure t)
+
+;; Avy
+;; Allow jumping to visible text using a char-based decision tree
+(use-package avy
+  :ensure t
+  :bind
+  ("M-z" . avy-goto-char))
 
 ;; TODO bind hyper key
 ;; http://xahlee.info/emacs/emacs/emacs_hyper_super_keys.html
