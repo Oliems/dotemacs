@@ -92,6 +92,11 @@
 (global-set-key (kbd "s-C-k") 'shrink-window)
 (global-set-key (kbd "s-C-j") 'enlarge-window)
 
+;; Hyper bindings
+(global-set-key (kbd "H-3") 'split-window-right)
+(global-set-key (kbd "H-2") 'split-window-below)
+(global-set-key (kbd "H-x s") 'eshell)
+
 ;; Font
 (add-to-list 'default-frame-alist
              '(font . "Fira Code 14"))
