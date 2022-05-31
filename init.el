@@ -199,7 +199,7 @@
   :config
   (dashboard-setup-startup-hook)
   (setq dashboard-items '((recents . 5)))
-  (setq dashboard-banner-logo-title "Emacs: the extensible customizable self-documenting display")
+  (setq dashboard-banner-logo-title "Emacs: the extensible customizable self-documenting display editor")
   (setq dashboard-startup-banner "~/.emacs.d/lambda.png")
   (setq dashboard-center-content t)
   (setq dashboard-show-shortcuts nil)
