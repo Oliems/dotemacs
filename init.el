@@ -180,12 +180,12 @@
   :defer nil
   :preface
   (defun update-config ()
-    "Update Witchmacs to the latest version."
+    "Update to the latest version."
     (interactive)
     (let ((dir (expand-file-name user-emacs-directory)))
       (if (file-exists-p dir)
           (progn
-            (message "Witchmacs is updating!")
+            (message "Updating...")
             (cd dir)
             (shell-command "git pull")
             (message "Update finished. Switch to the messages buffer to see changes and then restart Emacs"))
