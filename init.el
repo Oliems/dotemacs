@@ -176,7 +176,10 @@
 ;; Elfeed
 ;; Elfeed is an extensible web feed reader for Emacs, supporting both Atom and RSS.
 (use-package elfeed
-  :ensure t)
+  :ensure t
+  :bind ("H-x e" . 'elfeed)
+  :config
+  (load "~/.emacs.d/feeds.el"))
 
 ;; Dashboard
 ;; An extensible emacs startup screen showing you what’s most important.
