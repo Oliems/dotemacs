@@ -41,6 +41,9 @@
 ;; Enable minibuffer history
 (savehist-mode 1)
 
+;; Enable recursive minibuffers
+(setq enable-recursive-minibuffers t)
+
 ;; File backup settings
 (setq load-prefer-newer t)
 (setq backup-by-copying t)
@@ -181,6 +184,14 @@
   :config
   (load "~/.emacs.d/feeds.el"))
 
+;; Vertico
+;; Vertico provides a performant and minimalistic vertical completion UI
+;; based on the default completion system.
+(use-package vertico
+  :ensure t
+  :config
+  (vertico-mode 1))
+
 ;; Dashboard
 ;; An extensible emacs startup screen showing you what’s most important.
 (use-package dashboard
@@ -233,3 +244,5 @@
 	    "Pull changes from Github"
 	    (lambda (&rest _) (update-config))
 	    'default)))))
+
+;; TODO Replace swiper.el with consult.el https://github.com/minad/consult
