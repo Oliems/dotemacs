@@ -164,12 +164,6 @@
   ;; look at interactive functions.
   ("C-h C" . 'helpful-command))
 
-;; Swiper
-;; Swiper is an alternative to isearch that uses Ivy to show an overview of all matches.
-(use-package swiper
-  :ensure t
-  :bind ("C-s" . 'swiper)) ;; replace default isearch with swiper
-
 ;; Avy
 ;; This package allows jumping to visible text using a char-based decision tree
 (use-package avy
@@ -197,7 +191,8 @@
 (use-package consult
   :ensure t
   :bind
-  ("C-x b" . consult-buffer))
+  ("C-x b" . 'consult-buffer) ;; replace default switch-to-buffer with consult-buffer
+  ("C-s" . 'consult-line))  ;; replace default isearch with consult-line
 
 ;; Dashboard
 ;; An extensible emacs startup screen showing you what’s most important.
