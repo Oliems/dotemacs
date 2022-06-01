@@ -192,6 +192,13 @@
   :config
   (vertico-mode 1))
 
+;; Consult
+;; Consult provides practical commands based on the Emacs completion function completing-read.
+(use-package consult
+  :ensure t
+  :bind
+  ("C-x b" . consult-buffer))
+
 ;; Dashboard
 ;; An extensible emacs startup screen showing you what’s most important.
 (use-package dashboard
@@ -246,3 +253,4 @@
 	    'default)))))
 
 ;; TODO Replace swiper.el with consult.el https://github.com/minad/consult
+;; Add bindings for consult-buffer, consult-line
