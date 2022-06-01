@@ -105,8 +105,8 @@
              '(font . "Fira Code 14"))
 
 ;; Theme
-;; (load-theme 'modus-vivendi t)
 (load-theme 'modus-operandi t)
+(global-set-key (kbd "<f5>") 'modus-themes-toggle)
 
 ;; Display time and date in the modeline
 (use-package time
