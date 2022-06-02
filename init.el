@@ -8,6 +8,14 @@
 (scroll-bar-mode -1)
 (horizontal-scroll-bar-mode -1)
 
+;; Enable tab-bar-mode
+(tab-bar-mode 1)
+(setq tab-bar-separator " | ")
+(setq tab-bar-close-button-show nil)
+(global-set-key (kbd "H-t t") 'tab-new)
+(global-set-key (kbd "H-t <tab>") 'tab-next)
+(global-set-key (kbd "H-t k") 'tab-close)
+
 ;; Disable default startup screen
 (setq inhibit-startup-message t)
 
@@ -84,7 +92,7 @@
 
 ;; Switch bindings between default isearch and isearch with regexp
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+;; (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
@@ -196,8 +204,8 @@
   ("H-c b" . 'consult-bookmark)
   ("H-c a" . 'consult-apropos))
 
-;; TODO Replace swiper.el with consult.el https://github.com/minad/consult
-;; TODO Move modeline to tab-bar : https://www.youtube.com/watch?v=bFJO8ScRmj0 @ 6:30
+;; TODO Add time and date to the tab-bar
+;; TODO Remove "New Tab" buttons from the tab-bar
 
 ;; https://github.com/minad/consult/issues/417
 ;; https://github.com/minad/vertico
