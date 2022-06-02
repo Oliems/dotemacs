@@ -102,7 +102,7 @@
 
 ;; Font
 (add-to-list 'default-frame-alist
-             '(font . "Fira Code 14"))
+             '(font . "Iosevka SS12 14"))
 
 ;; Theme
 (load-theme 'modus-operandi t)
@@ -118,6 +118,12 @@
   (setq display-time-default-load-average nil)
   :hook (after-init . display-time-mode))
 
+;; Diminish
+;; This package implements hiding or abbreviation of the mode line
+;; displays (lighters) of minor-modes.
+(use-package diminish
+  :ensure t)
+
 ;; Eldoc
 ;; Add eldoc-mode to diminish
 (use-package eldoc
@@ -130,12 +136,6 @@
   :diminish which-key-mode
   :init
   (which-key-mode))
-
-;; Diminish
-;; This package implements hiding or abbreviation of the mode line
-;; displays (lighters) of minor-modes.
-(use-package diminish
-  :ensure t)
 
 ;; Helpful
 ;; This package is an alternative to the built-in Emacs help that provides much more
@@ -192,60 +192,17 @@
   :ensure t
   :bind
   ("C-x b" . 'consult-buffer) ;; replace default switch-to-buffer with consult-buffer
-  ("C-s" . 'consult-line))  ;; replace default isearch with consult-line
-
-;; Dashboard
-;; An extensible emacs startup screen showing you what’s most important.
-(use-package dashboard
-  :ensure t
-  :defer nil
-  :preface
-  (defun update-config ()
-    "Update to the latest version."
-    (interactive)
-    (let ((dir (expand-file-name user-emacs-directory)))
-      (if (file-exists-p dir)
-          (progn
-            (message "Updating...")
-            (cd dir)
-            (shell-command "git pull")
-            (message "Update finished. Switch to the messages buffer to see changes and then restart Emacs"))
-        (message "\"%s\" doesn't exist." dir))))
-
-  (defun create-scratch-buffer ()
-    "Create a scratch buffer"
-    (interactive)
-    (switch-to-buffer (get-buffer-create "*scratch*"))
-    (lisp-interaction-mode))
-  :config
-  (dashboard-setup-startup-hook)
-  (setq dashboard-items '((recents . 5)))
-  (setq dashboard-banner-logo-title "Emacs: the extensible customizable self-documenting display editor")
-  (setq dashboard-startup-banner "~/.emacs.d/lambda.png")
-  (setq dashboard-center-content t)
-  (setq dashboard-show-shortcuts nil)
-  (setq dashboard-set-init-info t)
-  (setq dashboard-init-info (format "%d packages loaded in %s"
-                                    (length package-activated-list) (emacs-init-time)))
-  (setq dashboard-set-footer nil)
-  (setq dashboard-set-navigator t)
-  (setq dashboard-navigator-buttons
-        `(
-          ((,nil
-	    "Open scratch buffer"
-	    "Switch to the scratch buffer"
-	    (lambda (&rest _) (create-scratch-buffer))
-	    'default)
-	   (nil
-	    "Open init.el"
-	    "Open configuration file"
-	    (lambda (&rest _) (find-file "~/.emacs.d/init.el"))
-	    'default)
-	   (nil
-	    "Update init.el"
-	    "Pull changes from Github"
-	    (lambda (&rest _) (update-config))
-	    'default)))))
+  ;; ("C-s" . 'consult-line)  ;; replace default isearch with consult-line
+  ("H-c b" . 'consult-bookmark)
+  ("H-c a" . 'consult-apropos))
 
 ;; TODO Replace swiper.el with consult.el https://github.com/minad/consult
 ;; Add bindings for consult-buffer, consult-line
+
+;; https://github.com/minad/vertico
+;; https://github.com/minad/consult
+;; https://github.com/oantolin/embark/
+;; https://github.com/oantolin/orderless
+;; https://github.com/minad/marginalia/
+;; https://www.youtube.com/watch?v=46w9e4GAjsU
+;; https://www.youtube.com/watch?v=43Dg5zYPHTU
