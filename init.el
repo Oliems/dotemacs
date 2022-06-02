@@ -194,18 +194,30 @@
   :config
   (vertico-mode 1))
 
+;; Oderless
+;; This package provides an orderless completion style that divides the pattern into space-separated
+;; components, and matches candidates that match all of the components in any order.
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+
 ;; Consult
 ;; Consult provides practical commands based on the Emacs completion function completing-read.
 (use-package consult
   :ensure t
   :bind
   ("C-x b" . 'consult-buffer)   ;; replace default switch-to-buffer with consult-buffer
-  ("C-s" . 'consult-grep)       ;; replace default isearch with consult-grep
+  ("C-s"   . 'consult-line)     ;; replace default isearch with consult-line
   ("H-c b" . 'consult-bookmark)
   ("H-c a" . 'consult-apropos))
 
-;; TODO Add time and date to the tab-bar
+;; TODO Add time and date to the tab-bar, in the right-hand corner
 ;; TODO Remove "New Tab" buttons from the tab-bar
+;; TODO Find an alternative to swiper
+;; TODO Present whichkey completions in a list
+;; TODO Configure consult to replace some of the default keybings (e.g consult-go-to-line)
 
 ;; https://github.com/minad/consult/issues/417
 ;; https://github.com/minad/vertico
