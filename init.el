@@ -191,14 +191,15 @@
 (use-package consult
   :ensure t
   :bind
-  ("C-x b" . 'consult-buffer) ;; replace default switch-to-buffer with consult-buffer
-  ;; ("C-s" . 'consult-line)  ;; replace default isearch with consult-line
+  ("C-x b" . 'consult-buffer)   ;; replace default switch-to-buffer with consult-buffer
+  ("C-s" . 'consult-grep)       ;; replace default isearch with consult-grep
   ("H-c b" . 'consult-bookmark)
   ("H-c a" . 'consult-apropos))
 
 ;; TODO Replace swiper.el with consult.el https://github.com/minad/consult
-;; Add bindings for consult-buffer, consult-line
+;; TODO Move modeline to tab-bar : https://www.youtube.com/watch?v=bFJO8ScRmj0 @ 6:30
 
+;; https://github.com/minad/consult/issues/417
 ;; https://github.com/minad/vertico
 ;; https://github.com/minad/consult
 ;; https://github.com/oantolin/embark/
