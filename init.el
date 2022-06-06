@@ -10,8 +10,13 @@
 
 ;; Enable tab-bar-mode
 (tab-bar-mode 1)
-(setq tab-bar-separator " | ")
+(setq tab-bar-separator " ~ ")
 (setq tab-bar-close-button-show nil)
+(setq tab-bar-format '(tab-bar-format-history
+		       tab-bar-format-tabs
+		       tab-bar-separator
+		       tab-bar-format-align-right
+		       tab-bar-format-global))
 (global-set-key (kbd "H-t t") 'tab-new)
 (global-set-key (kbd "H-t <tab>") 'tab-next)
 (global-set-key (kbd "H-t k") 'tab-close)
@@ -120,7 +125,7 @@
 (use-package time
   :commands world-clock
   :config
-  (setq display-time-format "%H:%M  %d-%m-%Y")
+  (setq display-time-format "%d-%m-%Y %H:%M")
   (setq display-time-interval 60)
   (setq display-time-mail-directory nil)
   (setq display-time-default-load-average nil)
@@ -136,14 +141,6 @@
 ;; Add eldoc-mode to diminish
 (use-package eldoc
   :diminish eldoc-mode)
-
-;; Whichkey
-;; This package displays available keybindings in popup
-(use-package which-key
-  :ensure t
-  :diminish which-key-mode
-  :init
-  (which-key-mode))
 
 ;; Helpful
 ;; This package is an alternative to the built-in Emacs help that provides much more
@@ -194,7 +191,7 @@
   :config
   (vertico-mode 1))
 
-;; Oderless
+;; Orderless
 ;; This package provides an orderless completion style that divides the pattern into space-separated
 ;; components, and matches candidates that match all of the components in any order.
 (use-package orderless
@@ -213,11 +210,26 @@
   ("H-c b" . 'consult-bookmark)
   ("H-c a" . 'consult-apropos))
 
-;; TODO Add time and date to the tab-bar, in the right-hand corner
-;; TODO Remove "New Tab" buttons from the tab-bar
-;; TODO Find an alternative to swiper
-;; TODO Present whichkey completions in a list
+;; Embark
+;; Embark makes it easy to choose a command to run based on what is near point, both during a minibuffer.
+;; completion session and in normal buffers.
+(use-package embark
+  :ensure t
+  :config
+  (setq prefix-help-command #'embark-prefix-help-command)) ;; uses Embark when pressing C-h during a keychord
+
 ;; TODO Configure consult to replace some of the default keybings (e.g consult-go-to-line)
+;; TODO Configure auto-update of packages
+;; TODO Remove ununsed packages
+
+;;; tab-bar ;;;
+;; TODO Disable automatic naming of tabs
+;; TODO Add pading on the right corner so that the time is not on the edge of the screen
+;; TODO Replace tab names with numbers e.g dwm
+;; TODO Add brackets around the number representing the focused tab e.g [2]
+;; TODO Bind a key to like H-1, H-2, etc. to switch tabs
+;; TODO Change the style of the tab, maybe make the background the same color as the background of the buffer
+;; TODO Open a few tabs by default
 
 ;; https://github.com/minad/consult/issues/417
 ;; https://github.com/minad/vertico
