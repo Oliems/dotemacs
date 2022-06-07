@@ -53,15 +53,15 @@
 (setq tab-bar-tab-name-format-function #'my/tab-bar-tab-name-format-default)
 
 ;; Keybindings to switch tabs using numbers
-(global-set-key (kbd "s-1") (lambda () (interactive) (tab-bar-select-tab 1)))
-(global-set-key (kbd "s-2") (lambda () (interactive) (tab-bar-select-tab 2)))
-(global-set-key (kbd "s-3") (lambda () (interactive) (tab-bar-select-tab 3)))
-(global-set-key (kbd "s-4") (lambda () (interactive) (tab-bar-select-tab 4)))
-(global-set-key (kbd "s-5") (lambda () (interactive) (tab-bar-select-tab 5)))
-(global-set-key (kbd "s-6") (lambda () (interactive) (tab-bar-select-tab 6)))
-(global-set-key (kbd "s-7") (lambda () (interactive) (tab-bar-select-tab 7)))
-(global-set-key (kbd "s-8") (lambda () (interactive) (tab-bar-select-tab 8)))
-(global-set-key (kbd "s-9") (lambda () (interactive) (tab-bar-select-tab 9)))
+(global-set-key (kbd "H-1") (lambda () (interactive) (tab-bar-select-tab 1)))
+(global-set-key (kbd "H-2") (lambda () (interactive) (tab-bar-select-tab 2)))
+(global-set-key (kbd "H-3") (lambda () (interactive) (tab-bar-select-tab 3)))
+(global-set-key (kbd "H-4") (lambda () (interactive) (tab-bar-select-tab 4)))
+(global-set-key (kbd "H-5") (lambda () (interactive) (tab-bar-select-tab 5)))
+(global-set-key (kbd "H-6") (lambda () (interactive) (tab-bar-select-tab 6)))
+(global-set-key (kbd "H-7") (lambda () (interactive) (tab-bar-select-tab 7)))
+(global-set-key (kbd "H-8") (lambda () (interactive) (tab-bar-select-tab 8)))
+(global-set-key (kbd "H-9") (lambda () (interactive) (tab-bar-select-tab 9)))
 
 ;; Modeline
 (setq mode-line-format
@@ -156,6 +156,9 @@
 (global-set-key (kbd "s-C-h") 'enlarge-window-horizontally)
 (global-set-key (kbd "s-C-k") 'shrink-window)
 (global-set-key (kbd "s-C-j") 'enlarge-window)
+
+;; Easier binding to switch windows
+(global-set-key (kbd "H-o") 'other-window)
 
 ;; Hyper bindings
 ;; (global-set-key (kbd "H-3") 'split-window-right)
@@ -283,12 +286,3 @@
 ;; TODO Add padding on the right corner so that the time is not on the edge of the screen
 ;; TODO Open a few tabs by default
 ;; TODO Append new tabs after all other tabs, not after the currently focused tab
-
-;; https://github.com/minad/consult/issues/417
-;; https://github.com/minad/vertico
-;; https://github.com/minad/consult
-;; https://github.com/oantolin/embark/
-;; https://github.com/oantolin/orderless
-;; https://github.com/minad/marginalia/
-;; https://www.youtube.com/watch?v=46w9e4GAjsU
-;; https://www.youtube.com/watch?v=43Dg5zYPHTU
