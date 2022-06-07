@@ -8,9 +8,12 @@
 (scroll-bar-mode -1)
 (horizontal-scroll-bar-mode -1)
 
+;; Disable default startup screen
+(setq inhibit-startup-message t)
+
 ;; Enable tab-bar-mode
 (tab-bar-mode 1)
-(setq tab-bar-separator " ~ ")
+(setq tab-bar-separator "")
 (setq tab-bar-close-button-show nil)
 (setq tab-bar-format '(tab-bar-format-history
 		       tab-bar-format-tabs
@@ -20,17 +23,66 @@
 (global-set-key (kbd "H-t t") 'tab-new)
 (global-set-key (kbd "H-t <tab>") 'tab-next)
 (global-set-key (kbd "H-t k") 'tab-close)
+(setq tab-bar-tab-hints t)                      ;; enable tab numbers
+(setq tab-bar-select-tab-modifiers '(super))
 
-;; Disable default startup screen
-(setq inhibit-startup-message t)
+(defvar my/tab-numbers-alist
+  '((0 . "0.")
+    (1 . "1.")
+    (2 . "2.")
+    (3 . "⒊")
+    (4 . "4.")
+    (5 . "5.")
+    (6 . "6.")
+    (7 . "7.")
+    (8 . "8.")
+    (9 . "9."))
+  "Alist of integers to strings of circled unicode numbers.")
+
+(defun my/tab-bar-tab-name-format-default (tab i)
+  (let ((current-p (eq (car tab) 'current-tab))
+        (tab-num (if (and tab-bar-tab-hints (< i 10))
+                     (alist-get i my/tab-numbers-alist) "")))
+    (propertize
+     (concat " "
+	     tab-num
+	     " "
+	     (alist-get 'name tab)
+             " ")
+     'face (funcall tab-bar-tab-face-function tab))))
+(setq tab-bar-tab-name-format-function #'my/tab-bar-tab-name-format-default)
+
+;; Keybindings to switch tabs using numbers
+(global-set-key (kbd "s-1") (lambda () (interactive) (tab-bar-select-tab 1)))
+(global-set-key (kbd "s-2") (lambda () (interactive) (tab-bar-select-tab 2)))
+(global-set-key (kbd "s-3") (lambda () (interactive) (tab-bar-select-tab 3)))
+(global-set-key (kbd "s-4") (lambda () (interactive) (tab-bar-select-tab 4)))
+(global-set-key (kbd "s-5") (lambda () (interactive) (tab-bar-select-tab 5)))
+(global-set-key (kbd "s-6") (lambda () (interactive) (tab-bar-select-tab 6)))
+(global-set-key (kbd "s-7") (lambda () (interactive) (tab-bar-select-tab 7)))
+(global-set-key (kbd "s-8") (lambda () (interactive) (tab-bar-select-tab 8)))
+(global-set-key (kbd "s-9") (lambda () (interactive) (tab-bar-select-tab 9)))
+
+;; Modeline
+(setq mode-line-format
+'("%e"
+ mode-line-front-space
+ mode-line-mule-info
+ mode-line-client
+ mode-line-modified
+ mode-line-remote
+ mode-line-frame-identification
+ mode-line-buffer-identification
+ "   "
+ mode-line-position
+ (vc-mode vc-mode)
+ "  "
+ mode-line-modes
+ ;; mode-line-misc-info
+ mode-line-end-spaces))
 
 ;; Move custom settings to custom.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
-;; Enable ido-mode
-(ido-mode t)
-(setq ido-everywhere t)
-(setq ido-enable-flex-matching t)
 
 ;; Disable ring bell
 (setq ring-bell-function 'ignore)
@@ -73,6 +125,7 @@
 (global-unset-key (kbd "s-x"))
 (global-unset-key (kbd "s-c"))
 (global-unset-key (kbd "s-v"))
+(global-unset-key (kbd "s-q"))
 
 ;; Disable arrow keys
 (global-unset-key (kbd "<left>"))
@@ -97,10 +150,6 @@
 
 ;; Switch bindings between default isearch and isearch with regexp
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-;; (global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "C-M-s") 'isearch-forward)
-(global-set-key (kbd "C-M-r") 'isearch-backward)
 
 ;; Easier resize bindings
 (global-set-key (kbd "s-C-l") 'shrink-window-horizontally)
@@ -109,8 +158,8 @@
 (global-set-key (kbd "s-C-j") 'enlarge-window)
 
 ;; Hyper bindings
-(global-set-key (kbd "H-3") 'split-window-right)
-(global-set-key (kbd "H-2") 'split-window-below)
+;; (global-set-key (kbd "H-3") 'split-window-right)
+;; (global-set-key (kbd "H-2") 'split-window-below)
 (global-set-key (kbd "H-x s") 'eshell)
 
 ;; Font
@@ -130,6 +179,9 @@
   (setq display-time-mail-directory nil)
   (setq display-time-default-load-average nil)
   :hook (after-init . display-time-mode))
+
+;; Display battery level in the modeline
+(display-battery-mode 1)
 
 ;; Diminish
 ;; This package implements hiding or abbreviation of the mode line
@@ -169,12 +221,6 @@
   ;; look at interactive functions.
   ("C-h C" . 'helpful-command))
 
-;; Avy
-;; This package allows jumping to visible text using a char-based decision tree
-(use-package avy
-  :ensure t
-  :bind ("M-z" . avy-goto-char)) ;; replace zap-to-char whith avy-goto-char
-
 ;; Elfeed
 ;; Elfeed is an extensible web feed reader for Emacs, supporting both Atom and RSS.
 (use-package elfeed
@@ -204,8 +250,10 @@
 ;; Consult provides practical commands based on the Emacs completion function completing-read.
 (use-package consult
   :ensure t
+  :config
+  (setq switch-to-buffer #'consult-buffer)
   :bind
-  ("C-x b" . 'consult-buffer)   ;; replace default switch-to-buffer with consult-buffer
+  ;; ("C-x b" . 'consult-buffer)   ;; replace default switch-to-buffer with consult-buffer
   ("C-s"   . 'consult-line)     ;; replace default isearch with consult-line
   ("H-c b" . 'consult-bookmark)
   ("H-c a" . 'consult-apropos))
@@ -218,18 +266,23 @@
   :config
   (setq prefix-help-command #'embark-prefix-help-command)) ;; uses Embark when pressing C-h during a keychord
 
+;; Marginalia
+;; This package provides marginalia-mode which adds marginalia to the minibuffer completions.
+(use-package marginalia
+  :ensure t
+  :config
+  (marginalia-mode 1))
+
 ;; TODO Configure consult to replace some of the default keybings (e.g consult-go-to-line)
 ;; TODO Configure auto-update of packages
 ;; TODO Remove ununsed packages
+;; TODO Configure mode-line-format to remove time and date in all buffers
+;; TODO Configure zap-up-to-char
 
 ;;; tab-bar ;;;
-;; TODO Disable automatic naming of tabs
-;; TODO Add pading on the right corner so that the time is not on the edge of the screen
-;; TODO Replace tab names with numbers e.g dwm
-;; TODO Add brackets around the number representing the focused tab e.g [2]
-;; TODO Bind a key to like H-1, H-2, etc. to switch tabs
-;; TODO Change the style of the tab, maybe make the background the same color as the background of the buffer
+;; TODO Add padding on the right corner so that the time is not on the edge of the screen
 ;; TODO Open a few tabs by default
+;; TODO Append new tabs after all other tabs, not after the currently focused tab
 
 ;; https://github.com/minad/consult/issues/417
 ;; https://github.com/minad/vertico
