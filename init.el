@@ -64,7 +64,7 @@
 (global-set-key (kbd "H-9") (lambda () (interactive) (tab-bar-select-tab 9)))
 
 ;; Modeline
-(setq mode-line-format
+(setq-default mode-line-format
 '("%e"
  mode-line-front-space
  mode-line-mule-info
@@ -278,8 +278,6 @@
 
 ;; TODO Configure consult to replace some of the default keybings (e.g consult-go-to-line)
 ;; TODO Configure auto-update of packages
-;; TODO Remove ununsed packages
-;; TODO Configure mode-line-format to remove time and date in all buffers
 ;; TODO Configure zap-up-to-char
 
 ;;; tab-bar ;;;
