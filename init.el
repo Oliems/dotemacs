@@ -125,6 +125,12 @@
 (global-unset-key (kbd "s-v"))
 (global-unset-key (kbd "s-q"))
 
+;; Disable suspend Emacs binding
+(global-unset-key (kbd "C-z"))
+
+;; Replace zap-to-char with zap-up-to-char
+(global-set-key (kbd "M-z") 'zap-up-to-char)
+
 ;; Disable arrow keys
 (global-unset-key (kbd "<left>"))
 (global-unset-key (kbd "<right>"))
