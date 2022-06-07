@@ -23,8 +23,6 @@
 (global-set-key (kbd "H-t t") 'tab-new)
 (global-set-key (kbd "H-t <tab>") 'tab-next)
 (global-set-key (kbd "H-t k") 'tab-close)
-(setq tab-bar-tab-hints t)                      ;; enable tab numbers
-(setq tab-bar-select-tab-modifiers '(super))
 
 (defvar my/tab-numbers-alist
   '((0 . "0.")
