@@ -65,21 +65,21 @@
 
 ;; Modeline
 (setq-default mode-line-format
-'("%e"
- mode-line-front-space
- mode-line-mule-info
- mode-line-client
- mode-line-modified
- mode-line-remote
- mode-line-frame-identification
- mode-line-buffer-identification
- "   "
- mode-line-position
- (vc-mode vc-mode)
- "  "
- mode-line-modes
- ;; mode-line-misc-info
- mode-line-end-spaces))
+	      '("%e"
+		mode-line-front-space
+		mode-line-mule-info
+		mode-line-client
+		mode-line-modified
+		mode-line-remote
+		mode-line-frame-identification
+		mode-line-buffer-identification
+		"   "
+		mode-line-position
+		(vc-mode vc-mode)
+		"  "
+		mode-line-modes
+		;; mode-line-misc-info
+		mode-line-end-spaces))
 
 ;; Move custom settings to custom.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -186,6 +186,16 @@
 ;; Display battery level in the modeline
 (display-battery-mode 1)
 
+;; auto-package-update
+;; This package provides functionality for automatically updating your Emacs packages periodically.
+(use-package auto-package-update
+  :defer nil
+  :ensure t
+  :config
+  (setq auto-package-update-delete-old-versions t)
+  (setq auto-package-update-hide-results t)
+  (auto-package-update-maybe))
+
 ;; Diminish
 ;; This package implements hiding or abbreviation of the mode line
 ;; displays (lighters) of minor-modes.
@@ -277,7 +287,6 @@
   (marginalia-mode 1))
 
 ;; TODO Configure consult to replace some of the default keybings (e.g consult-go-to-line)
-;; TODO Configure auto-update of packages
 ;; TODO Configure zap-up-to-char
 
 ;;; tab-bar ;;;
