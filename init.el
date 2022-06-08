@@ -205,12 +205,12 @@
 (use-package diminish
   :ensure t)
 
-;; Beacon
-;; Whenever the window scrolls a light will shine on top of your cursor so you know where it is.
-(use-package beacon
+;; Pulsar
+;; This is a small package that temporarily highlights the current line after a given function is invoked.
+(use-package pulsar
   :ensure t
-  :config
-  (beacon-mode 1))
+  :init
+  (pulsar-global-mode 1))
 
 ;; Eldoc
 ;; Add eldoc-mode to diminish
