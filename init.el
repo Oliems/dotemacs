@@ -117,6 +117,9 @@
 ;; Make apropos command search more extensively
 (setq apropos-do-all t)
 
+;; Restore some of the disabled commands
+(put 'dired-find-alternate-file 'disabled nil)
+
 ;; Disable s-* bindings
 (global-unset-key (kbd "s-z"))
 (global-unset-key (kbd "s-x"))
@@ -308,3 +311,4 @@
 ;;; tab-bar ;;;
 ;; TODO Add padding on the right corner so that the time is not on the edge of the screen
 ;; TODO Append new tabs after all other tabs, not after the currently focused tab
+
