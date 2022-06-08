@@ -21,7 +21,6 @@
 		       tab-bar-format-align-right
 		       tab-bar-format-global))
 (global-set-key (kbd "H-t t") 'tab-new)
-(global-set-key (kbd "H-t <tab>") 'tab-next)
 (global-set-key (kbd "H-t k") 'tab-close)
 
 (defvar my/tab-numbers-alist
@@ -206,6 +205,13 @@
 (use-package diminish
   :ensure t)
 
+;; Beacon
+;; Whenever the window scrolls a light will shine on top of your cursor so you know where it is.
+(use-package beacon
+  :ensure t
+  :config
+  (beacon-mode 1))
+
 ;; Eldoc
 ;; Add eldoc-mode to diminish
 (use-package eldoc
@@ -301,5 +307,4 @@
 
 ;;; tab-bar ;;;
 ;; TODO Add padding on the right corner so that the time is not on the edge of the screen
-;; TODO Open a few tabs by default
 ;; TODO Append new tabs after all other tabs, not after the currently focused tab
