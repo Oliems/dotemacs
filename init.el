@@ -167,10 +167,12 @@
 ;; Easier binding to switch windows
 (global-set-key (kbd "H-o") 'other-window)
 
-;; Hyper bindings
-;; (global-set-key (kbd "H-3") 'split-window-right)
-;; (global-set-key (kbd "H-2") 'split-window-below)
-(global-set-key (kbd "H-x s") 'eshell)
+;; Easier delete window
+(global-set-key (kbd "H-0") 'delete-window)
+
+;; Easier split bindings
+(global-set-key (kbd "H-[") 'split-window-right)
+(global-set-key (kbd "H-]") 'split-window-below)
 
 ;; Font
 (add-to-list 'default-frame-alist
