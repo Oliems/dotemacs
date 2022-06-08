@@ -238,6 +238,13 @@
   ;; look at interactive functions.
   ("C-h C" . 'helpful-command))
 
+;; Olivetti
+;; A simple Emacs minor mode for a nice writing environment.
+(use-package olivetti
+  :ensure t
+  :config
+  (global-set-key (kbd "<f9>") 'olivetti-mode))
+
 ;; Elfeed
 ;; Elfeed is an extensible web feed reader for Emacs, supporting both Atom and RSS.
 (use-package elfeed
@@ -291,7 +298,6 @@
   (marginalia-mode 1))
 
 ;; TODO Configure consult to replace some of the default keybings (e.g consult-go-to-line)
-;; TODO Configure zap-up-to-char
 
 ;;; tab-bar ;;;
 ;; TODO Add padding on the right corner so that the time is not on the edge of the screen
