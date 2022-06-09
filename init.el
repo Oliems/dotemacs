@@ -12,9 +12,13 @@
 ;; Disable default startup screen
 (setq inhibit-startup-message t)
 
+;; Start Emacs in fullscreen
+(add-hook 'window-setup-hook 'toggle-frame-fullscreen t)
+
 ;; Enable tab-bar-mode
 (tab-bar-mode 1)
 (setq tab-bar-separator "")
+(setq tab-bar-tab-hints t)
 (setq tab-bar-close-button-show nil)
 (setq tab-bar-format '(tab-bar-format-history
 		       tab-bar-format-tabs
@@ -28,7 +32,7 @@
   '((0 . "0.")
     (1 . "1.")
     (2 . "2.")
-    (3 . "⒊")
+    (3 . "3.")
     (4 . "4.")
     (5 . "5.")
     (6 . "6.")
@@ -176,7 +180,7 @@
 
 ;; Font
 (add-to-list 'default-frame-alist
-             '(font . "Iosevka SS12 14"))
+             '(font . "Fantasque Sans Mono 15"))
 
 ;; Theme
 (load-theme 'modus-operandi t)
@@ -309,9 +313,10 @@
   :config
   (marginalia-mode 1))
 
+
 ;; TODO Configure consult to replace some of the default keybings (e.g consult-go-to-line)
+;; Set org-mode as fundamental mode
 
 ;;; tab-bar ;;;
 ;; TODO Add padding on the right corner so that the time is not on the edge of the screen
 ;; TODO Append new tabs after all other tabs, not after the currently focused tab
-
