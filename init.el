@@ -115,8 +115,8 @@
 ;; Show matching parentheses
 (show-paren-mode 1)
 
-;; When you visit a file, point goes to the last place where it was
-;; when you previously visited the same file.
+;; When you visit a file, point goes to the last place where it was when you
+;; previously visited the same file.
 (save-place-mode 1)
 
 ;; Enable minibuffer history
@@ -214,7 +214,8 @@
 (display-battery-mode 1)
 
 ;; auto-package-update
-;; This package provides functionality for automatically updating your Emacs packages periodically.
+;; This package provides functionality for automatically updating your Emacs
+;; packages periodically.
 (use-package auto-package-update
   :defer nil
   :ensure t
@@ -224,13 +225,14 @@
   (auto-package-update-maybe))
 
 ;; Diminish
-;; This package implements hiding or abbreviation of the mode line
-;; displays (lighters) of minor-modes.
+;; This package implements hiding or abbreviation of the mode line displays
+;; (lighters) of minor-modes.
 (use-package diminish
   :ensure t)
 
 ;; Pulsar
-;; This is a small package that temporarily highlights the current line after a given function is invoked.
+;; This is a small package that temporarily highlights the current line after a
+;; given function is invoked.
 (use-package pulsar
   :ensure t
   :init
@@ -247,8 +249,8 @@
   :diminish visual-line-mode)
 
 ;; Helpful
-;; This package is an alternative to the built-in Emacs help that provides much more
-;; contextual information
+;; This package is an alternative to the built-in Emacs help that provides much
+;; more contextual information
 (use-package helpful
   :ensure t
   :bind
@@ -256,8 +258,8 @@
   ("C-h f" . 'helpful-callable)
   ("C-h k" . 'helpful-key)
 
-  ;; Lookup the current symbol at point. C-c C-d is a common keybinding
-  ;; for this in lisp modes.
+  ;; Lookup the current symbol at point. C-c C-d is a common keybinding for this
+  ;; in lisp modes.
   ("C-c C-d" . 'helpful-at-point)
 
   ;; Look up *F*unctions (excludes macros).
@@ -290,16 +292,17 @@
   (load "~/.emacs.d/feeds.el"))
 
 ;; Vertico
-;; Vertico provides a performant and minimalistic vertical completion UI
-;; based on the default completion system.
+;; Vertico provides a performant and minimalistic vertical completion UI based
+;; on the default completion system.
 (use-package vertico
   :ensure t
   :config
   (vertico-mode 1))
 
 ;; Orderless
-;; This package provides an orderless completion style that divides the pattern into space-separated
-;; components, and matches candidates that match all of the components in any order.
+;; This package provides an orderless completion style that divides the pattern
+;; into space-separated components, and matches candidates that match all of the
+;; components in any order.
 (use-package orderless
   :ensure t
   :custom
@@ -307,7 +310,8 @@
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
 ;; Consult
-;; Consult provides practical commands based on the Emacs completion function completing-read.
+;; Consult provides practical commands based on the Emacs completion function
+;; completing-read.
 (use-package consult
   :ensure t
   :config
@@ -319,8 +323,8 @@
   ("H-c a" . 'consult-apropos))
 
 ;; Embark
-;; Embark makes it easy to choose a command to run based on what is near point, both during a minibuffer.
-;; completion session and in normal buffers.
+;; Embark makes it easy to choose a command to run based on what is near point,
+;; both during a minibuffer.  completion session and in normal buffers.
 (use-package embark
   :ensure t
   :config
@@ -335,9 +339,9 @@
   (marginalia-mode 1))
 
 ;; Meow
-;; Meow aims to blend modal editing into Emacs with minimal
-;; interference with its original key-bindings, avoiding most of the
-;; hassle introduced by key-binding conflicts.
+;; Meow aims to blend modal editing into Emacs with minimal interference with
+;; its original key-bindings, avoiding most of the hassle introduced by
+;; key-binding conflicts.
 (use-package meow
   :ensure t
   :init
@@ -437,12 +441,5 @@
 
 ;;; tab-bar ;;;
 ;; TODO Append new tabs after all other tabs, not after the currently focused tab
-
-; I have a second question related to the first one. As you can see
-;in the screenshot, there are a couple of white pixels on the left
-; of the tab labeled "1. init.el". Those pixels can also be seen on
-; each side of the modeline. I would like to know if there is a way
-; to change that, so that the edge of the tab and the edges of the
-;modeline touch the edges of the frame?
 
 ;; https://github.com/joaotavora/eglot
