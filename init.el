@@ -61,7 +61,7 @@
          (rest (tab-bar-format-list rest))
          (rest (mapconcat (lambda (item) (nth 2 item)) rest ""))
          (hpos (length rest))
-         (str (propertize " " 'display `(space :align-to (- right ,hpos 3)))))
+         (str (propertize " " 'display `(space :align-to (- right ,hpos 2)))))
     `((align-right menu-item ,str ignore)))))
 
 ;; Keybindings to switch tabs using numbers
@@ -190,7 +190,7 @@
 
 ;; Font
 (add-to-list 'default-frame-alist
-             '(font . "Iosevka SS12 12"))
+             '(font . "Comic Code 12"))
 
 ;; Theme
 (load-theme 'modus-operandi t)
@@ -200,7 +200,7 @@
 (use-package time
   :commands world-clock
   :config
-  (setq display-time-format "%d-%m-%Y %H:%M") ;; using non-breakable spaces to move the string a bit to the right
+  (setq display-time-format "%d-%m-%Y %H:%M")
   (setq display-time-interval 60)
   (setq display-time-mail-directory nil)
   (setq display-time-default-load-average nil)
