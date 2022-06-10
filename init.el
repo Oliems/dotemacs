@@ -54,6 +54,16 @@
      'face (funcall tab-bar-tab-face-function tab))))
 (setq tab-bar-tab-name-format-function #'my/tab-bar-tab-name-format-default)
 
+(eval-after-load "tab-bar"
+(defun tab-bar-format-align-right ()
+  "Align the rest of tab bar items to the right."
+  (let* ((rest (cdr (memq 'tab-bar-format-align-right tab-bar-format)))
+         (rest (tab-bar-format-list rest))
+         (rest (mapconcat (lambda (item) (nth 2 item)) rest ""))
+         (hpos (length rest))
+         (str (propertize " " 'display `(space :align-to (- right ,hpos 3)))))
+    `((align-right menu-item ,str ignore)))))
+
 ;; Keybindings to switch tabs using numbers
 (global-set-key (kbd "H-1") (lambda () (interactive) (tab-bar-select-tab 1)))
 (global-set-key (kbd "H-2") (lambda () (interactive) (tab-bar-select-tab 2)))
@@ -180,7 +190,7 @@
 
 ;; Font
 (add-to-list 'default-frame-alist
-             '(font . "Fantasque Sans Mono 15"))
+             '(font . "Iosevka SS12 12"))
 
 ;; Theme
 (load-theme 'modus-operandi t)
@@ -190,7 +200,7 @@
 (use-package time
   :commands world-clock
   :config
-  (setq display-time-format "%d-%m-%Y %H:%M")
+  (setq display-time-format "%d-%m-%Y %H:%M") ;; using non-breakable spaces to move the string a bit to the right
   (setq display-time-interval 60)
   (setq display-time-mail-directory nil)
   (setq display-time-default-load-average nil)
@@ -318,5 +328,13 @@
 ;; Set org-mode as fundamental mode
 
 ;;; tab-bar ;;;
-;; TODO Add padding on the right corner so that the time is not on the edge of the screen
 ;; TODO Append new tabs after all other tabs, not after the currently focused tab
+
+; I have a second question related to the first one. As you can see
+;in the screenshot, there are a couple of white pixels on the left
+; of the tab labeled "1. init.el". Those pixels can also be seen on
+; each side of the modeline. I would like to know if there is a way
+; to change that, so that the edge of the tab and the edges of the
+;modeline touch the edges of the frame?
+
+;; https://github.com/joaotavora/eglot
