@@ -6,6 +6,7 @@
 ;; Check if use-package is installed, if not install it
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
+(require 'use-package)
 
 ;; Disable GUI elements
 (menu-bar-mode -1)
