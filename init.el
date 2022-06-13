@@ -3,6 +3,10 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
+;; Check if use-package is installed, if not install it
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
 ;; Disable GUI elements
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -27,14 +31,14 @@
 		       tab-bar-format-global))
 
 (eval-after-load "tab-bar"
-(defun tab-bar-format-align-right ()
-  "Align the rest of tab bar items to the right."
-  (let* ((rest (cdr (memq 'tab-bar-format-align-right tab-bar-format)))
-         (rest (tab-bar-format-list rest))
-         (rest (mapconcat (lambda (item) (nth 2 item)) rest ""))
-         (hpos (length rest))
-         (str (propertize " " 'display `(space :align-to (- right ,hpos 2)))))
-    `((align-right menu-item ,str ignore)))))
+  (defun tab-bar-format-align-right ()
+    "Align the rest of tab bar items to the right."
+    (let* ((rest (cdr (memq 'tab-bar-format-align-right tab-bar-format)))
+           (rest (tab-bar-format-list rest))
+           (rest (mapconcat (lambda (item) (nth 2 item)) rest ""))
+           (hpos (length rest))
+           (str (propertize " " 'display `(space :align-to (- right ,hpos 2)))))
+      `((align-right menu-item ,str ignore)))))
 
 (global-set-key (kbd "H-t t") 'tab-new)
 (global-set-key (kbd "H-t k") 'tab-close)
@@ -104,7 +108,7 @@ RIGHT aligned respectively."
              "L%l"))
      ;; Right.
      (quote (
-	    "%b [%m] "))))))
+	     "%b [%m] "))))))
 
 ;; Move custom settings to custom.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -447,7 +451,7 @@ RIGHT aligned respectively."
   (meow-setup)
   (meow-global-mode 1))
 
-;; TODO Find better defaults
+;; TODO Find better defaults (e.g delete-by-moving-to-trash)
 ;; TODO Fix bug of mode-name not showing for Elisp mode
 ;; TODO Put meow-indicator in bold
 ;; TODO Configure consult to replace some of the default keybings (e.g consult-go-to-line)
