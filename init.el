@@ -52,7 +52,7 @@
     (9 . "9."))
   "Alist of integers to strings of circled unicode numbers.")
 
-(defun my/tab-bar-tab-name-format-default (tab i)
+(defun oli/tab-bar-tab-name-format-default (tab i)
   (let ((current-p (eq (car tab) 'current-tab))
         (tab-num (if (and tab-bar-tab-hints (< i 10))
                      (alist-get i my/tab-numbers-alist) "")))
@@ -63,7 +63,7 @@
 	     (alist-get 'name tab)
              " ")
      'face (funcall tab-bar-tab-face-function tab))))
-(setq tab-bar-tab-name-format-function #'my/tab-bar-tab-name-format-default)
+(setq tab-bar-tab-name-format-function #'oli/tab-bar-tab-name-format-default)
 
 ;; Keybindings to switch tabs using numbers
 (global-set-key (kbd "H-1") (lambda () (interactive) (tab-bar-select-tab 1)))
@@ -77,22 +77,34 @@
 (global-set-key (kbd "H-9") (lambda () (interactive) (tab-bar-select-tab 9)))
 
 ;; Modeline
-(setq-default mode-line-format
-	      '("%e"
-		mode-line-front-space
-		mode-line-mule-info
-		mode-line-client
-		mode-line-modified
-		mode-line-remote
-		mode-line-frame-identification
-		mode-line-buffer-identification
-		"   "
-		mode-line-position
-		(vc-mode vc-mode)
-		"  "
-		mode-line-modes
-		;; mode-line-misc-info
-		mode-line-end-spaces))
+(defun oli/simple-mode-line-render (left right)
+  "Return a string of `window-width' length.  Containing LEFT, and
+RIGHT aligned respectively."
+  (let ((available-width
+         (- (window-total-width)
+            (+ (length (format-mode-line left))
+               (length (format-mode-line right))))))
+    (append left
+            (list (format (format "%%%ds" available-width) ""))
+            right)))
+
+(setq-default
+ mode-line-format
+ '((:eval
+    (oli/simple-mode-line-render
+     ;; Left.
+     (quote (" "
+	     mode-line-mule-info
+	     mode-line-client
+	     mode-line-modified
+	     mode-line-remote
+	     "  "
+	     (:eval (when (bound-and-true-p meow-mode) (meow-indicator)))
+	     "  "
+             "L%l"))
+     ;; Right.
+     (quote (
+	    "%b [%m] "))))))
 
 ;; Move custom settings to custom.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -435,11 +447,10 @@
   (meow-setup)
   (meow-global-mode 1))
 
+;; TODO Find better defaults
+;; TODO Fix bug of mode-name not showing for Elisp mode
+;; TODO Put meow-indicator in bold
 ;; TODO Configure consult to replace some of the default keybings (e.g consult-go-to-line)
-;; TODO Set org-mode as fundamental mode
-;; TODO Cycle between windows clockwise
-
-;;; tab-bar ;;;
+;; TODO Cycle between windows clockwise (ask on SE)
+;; TODO Port configuration to org-mode
 ;; TODO Append new tabs after all other tabs, not after the currently focused tab
-
-;; https://github.com/joaotavora/eglot
