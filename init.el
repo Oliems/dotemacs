@@ -109,6 +109,8 @@ RIGHT aligned respectively."
              "L%l"))
      ;; Right.
      (quote (
+	     (vc-mode vc-mode)
+	     "   "
 	     "%b [%m] "))))))
 
 ;; Move custom settings to custom.el
