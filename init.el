@@ -267,6 +267,11 @@ RIGHT aligned respectively."
 (use-package simple
   :diminish visual-line-mode)
 
+;; Magit
+;; Magit is a complete text-based user interface to Git.
+(use-package magit
+  :ensure t)
+
 ;; Helpful
 ;; This package is an alternative to the built-in Emacs help that provides much
 ;; more contextual information
@@ -454,6 +459,8 @@ RIGHT aligned respectively."
   (meow-setup)
   (meow-global-mode 1))
 
+;; TODO Implement a way to quickly open a file with completion
+;; TODO Install and configure magit.el
 ;; TODO Find better defaults (e.g delete-by-moving-to-trash)
 ;; TODO Fix bug of mode-name not showing for Elisp mode
 ;; TODO Put meow-indicator in bold
